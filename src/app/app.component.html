@@ -5,14 +5,14 @@
       <p>All the my tasks HERE!!!</p>
       <input
         class="new-todo"
-        placeholder="Type new todo"
+        placeholder="Type the new task"
         autofocus
         type="text"
       />
     </div>
   </header>
   <div class="container todoapp-wrapper">
-    <!-- This section should be hidden by default and shown when there are todos -->
+    <!-- This is the example to see how looks the tasks -->
     <section class="main">
       <ul class="todo-list">
         <li class="finished">
@@ -43,9 +43,9 @@
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
     <footer class="footer">
-      <!-- This should be `0 items left` by default -->
+      <!-- Here is the counter of kind of tasks -->
       <span class="todo-count"><strong>0</strong> item left</span>
-      <!-- Remove this if you don't implement routing -->
+      <!-- This will be for change the list -->
       <ul class="filters">
         <li>
           <a routerLink="/" class="selected">All Tasks</a>
@@ -57,7 +57,7 @@
           <a routerLink="/finished">Finished</a>
         </li>
       </ul>
-      <!-- Hidden if no finished items are left ↓ -->
+      <!-- Hidden ??  if no finished items are left ?? Think how to use it ↓ -->
       <button class="clear-finished">Clear Finished</button>
     </footer>
   </div>
