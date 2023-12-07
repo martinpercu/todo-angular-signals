@@ -1,4 +1,4 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, effect, inject, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -16,31 +16,21 @@ export class AppComponent {
   title = 'todoapp';
 
   tasks = signal<Task[]>([
-    {
-      id: Date.now(),
-      title: 'do something 1',
-      finished: false
-    },
-    {
-      id: Date.now(),
-      title: 'do something 2',
-      finished: false
-    },
-    {
-      id: Date.now(),
-      title: 'do something 3',
-      finished: false
-    },
-    {
-      id: Date.now(),
-      title: 'do something 4',
-      finished: false
-    },
-    {
-      id: Date.now(),
-      title: 'do something 5',
-      finished: false
-    }
+    // {
+    //   id: Date.now(),
+    //   title: 'do something 1',
+    //   finished: false
+    // },
+    // {
+    //   id: Date.now(),
+    //   title: 'do something 2',
+    //   finished: false
+    // },
+    // {
+    //   id: Date.now(),
+    //   title: 'do something 3',
+    //   finished: false
+    // },
   ]);
 
   filterTasks = signal<'allTasks' | 'finished' | 'pending'>('allTasks');
@@ -63,6 +53,39 @@ export class AppComponent {
       Validators.required,
     ]
   });
+
+  // constructor() {
+  //     effect(() => {
+  //       const tasks = this.tasks();
+  //       console.log(tasks , "run each time task change");
+  //       localStorage.setItem('tasks', JSON.stringify(tasks));
+  //     });
+  //   };
+
+    // We will use the injector above to use the effect() in another method ==>trackTasks() called in the ngOnInit().
+    // IMPORTANT this is not "REALLY" needed. But could happend in contructor the effect will set tasks with an empty string (line 15 here). Then set them in local storage.
+    // So we will save an empty array in localStorage. Not the idea ;)
+
+    injector = inject(Injector);
+
+    ngOnInit() {
+      const storage = localStorage.getItem('tasks');
+      if (storage) {
+        const tasks = JSON.parse(storage);
+        this.tasks.set(tasks);
+      }
+      this.trackTasks();
+    }
+
+    trackTasks() {
+      effect(() => {
+        const tasks = this.tasks();
+        console.log(tasks , "run each time task change");
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+      }, {injector: this.injector});
+    }
+
+
 
   inputHandler() {
     if (this.newTaskControl.valid) {

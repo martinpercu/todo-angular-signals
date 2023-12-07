@@ -62,6 +62,13 @@
 - In the footer there is a class="selected".... change this for a dynamic way if states is allTasks, finished or pending. ===> [class.selected]="filterTasks() === 'pending'"
 - Also in the counter change the tasks().length for tasksFiltered().length to start using the new arrays we use to render.
 
+## Effect for localStorage
+- IMPORTANT the effect is like a watcher in VUE. So we will see with the effect if the state change to save the list or task in the local storage.
+- The basic idea is In TS add a contructor with the effect inside. BUT is not totally great because as we first create an empty arrays of task could happend than will save this list and do not get the ancient one already saved.  SO ....
+- In TS add ngOnInit() to get the tasks in the localStorage
+- In TS add a method to track the Tasks ====> trackTasks() here add the effect(). IMPORTANT here we will need to use the "injector". SO..... 
+- In TS add the ===> "injector = inject(Injector);"
+
 
 
 
