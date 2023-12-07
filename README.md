@@ -20,6 +20,16 @@
 - New method inputHandler(). This will get the new task and then add it into the signal tasks array state.
 - In the html add (change)="inputHandler($event)"
 
+## Delete Task
+- New method deleteTask().
+- In html add a (click in the button class"destroy"). Important in Click deleteTask(i). "i" is the index generated in the @for.
+
+
+
+
+
+
+
 
 
 
