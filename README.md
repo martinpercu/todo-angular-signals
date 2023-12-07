@@ -30,6 +30,10 @@
 - In inputHandler() call the addOneTask() with the newTask.
 - In html change {{ task }} for {{ task.title }}.
 
+## Updating tasks
+- In TS new Method updateTask().
+- In Html the input checkbox for each task add [checked]="task.finished". This will change the style depending in how is the task state. Also add ===> (change)="updateTask(i)" just to call the method.
+- Also in HTML in the footer in the task counter add something like {{ tasks().length }} to show tasks quantities.
 
 
 
