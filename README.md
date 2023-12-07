@@ -24,6 +24,13 @@
 - New method deleteTask().
 - In html add a (click in the button class"destroy"). Important in Click deleteTask(i). "i" is the index generated in the @for.
 
+## List Task Objects
+- In TS tranform the array of task adding object. ===> like we have in models task.model.ts
+- Add new method addOneTask(). This will be invoke from the inputHandler()
+- In inputHandler() call the addOneTask() with the newTask.
+- In html change {{ task }} for {{ task.title }}.
+
+
 
 
 
