@@ -15,6 +15,16 @@
     <!-- This is the example to see how looks the tasks -->
     <section class="main">
       <ul class="todo-list">
+        @for (task of tasks(); track task; let i = $index) {
+          <li>
+            <div class="view">
+              <input class="toggle" type="checkbox" />
+              <label>{{ task }}</label>
+              <button class="destroy"></button>
+            </div>
+            <input class="edit" value="Render the 3D object in Blender" />
+          </li>
+        }
         <li class="finished">
           <div class="view">
             <input class="toggle" type="checkbox" checked />
