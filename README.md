@@ -58,7 +58,6 @@
 - Also add a method to change that. ===> changeFilterTasks(filter)
 - In HTML footer add in each li element a (click to call changeFilterTasks())
 - In TS add tasksFiltered = computed(() => then organize de list in relation on the state finished, pending or allTasks
-- IMPORTANTE computed() is like a watcher in Vue checking all time if there are changes in the signals in order to do something.
 - Now in the HTML the @for (task of tasks() must be @for (task of tasksFiltered()
 - In the footer there is a class="selected".... change this for a dynamic way if states is allTasks, finished or pending. ===> [class.selected]="filterTasks() === 'pending'"
 - Also in the counter change the tasks().length for tasksFiltered().length to start using the new arrays we use to render.
