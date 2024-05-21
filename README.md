@@ -11,6 +11,11 @@
 - Import the task model in the app.component.ts. (this will help in the future).
 - Also I make a favicon ;)
 
+## Task list (static)
+- Create a list of task with signal in the TS.
+- @for to show this list.
+- Comment the html useless. (then we will use it).
+
 
 
 
