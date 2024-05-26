@@ -16,6 +16,10 @@
 - @for to show this list.
 - Comment the html useless. (then we will use it).
 
+## Input implementation
+- New method inputHandler(). This will get the new task and then add it into the signal tasks array state.
+- In the html add (change)="inputHandler($event)"
+
 
 
 

@@ -22,5 +22,11 @@ export class AppComponent {
     'do something 5'
   ]);
 
+  inputHandler(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newTask = input.value;
+    this.tasks.update((tasks) => [...tasks, newTask]);
+  }
+
 
 }
