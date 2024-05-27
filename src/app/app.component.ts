@@ -28,5 +28,9 @@ export class AppComponent {
     this.tasks.update((tasks) => [...tasks, newTask]);
   }
 
+  deleteTask(index: number) {
+    this.tasks.update((tasks) => tasks.filter((task, position) => position !== index));
+  }
+
 
 }
