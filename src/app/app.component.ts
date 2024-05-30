@@ -14,17 +14,46 @@ export class AppComponent {
 
   title = 'todoapp';
 
-  tasks = signal([
-    'do something 1',
-    'do something 2',
-    'do something 3',
-    'do something 4',
-    'do something 5'
+  tasks = signal<Task[]>([
+    {
+      id: Date.now(),
+      title: 'do something 1',
+      finished: false
+    },
+    {
+      id: Date.now(),
+      title: 'do something 2',
+      finished: false
+    },
+    {
+      id: Date.now(),
+      title: 'do something 3',
+      finished: false
+    },
+    {
+      id: Date.now(),
+      title: 'do something 4',
+      finished: false
+    },
+    {
+      id: Date.now(),
+      title: 'do something 5',
+      finished: false
+    }
   ]);
 
   inputHandler(event: Event) {
     const input = event.target as HTMLInputElement;
     const newTask = input.value;
+    this.addOneTask(newTask);
+  }
+
+  addOneTask(title: string) {
+    const newTask = {
+      id: Date.now(),
+      title,
+      finished: false
+    };
     this.tasks.update((tasks) => [...tasks, newTask]);
   }
 
