@@ -35,7 +35,12 @@
 - In Html the input checkbox for each task add [checked]="task.finished". This will change the style depending in how is the task state. Also add ===> (change)="updateTask(i)" just to call the method.
 - Also in HTML in the footer in the task counter add something like {{ tasks().length }} to show tasks quantities.
 
-
+## Input management
+- In TS import { ReactiveFormsModule } from '@angular/forms';
+- Then new FormControl().
+- In HTML input replace (change) with [formControl]="newTaskControl"
+- In HTML input add (keydown.enter)="inputHandler()"  (WHITOUT the $event) Because the "event" is in the new FormControl
+- In TS inputHandler() modify it
 
 
 
