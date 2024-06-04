@@ -23,13 +23,21 @@
     <section class="main">
       <ul class="todo-list">
         @for (task of tasks(); track task; let i = $index) {
-          <li>
+          <li
+            (dblclick)="updateTaskTitle(i)"
+            [class.finished]="task.finished"
+            [class.editing]="task.editing"
+          >
             <div class="view">
               <input class="toggle" type="checkbox" [checked]="task.finished" (change)="updateTask(i)"/>
               <label>{{ task.title }}</label>
               <button class="destroy" (click)="deleteTask(i)"></button>
             </div>
-            <input class="edit" value="Render the 3D object in Blender" />
+            <input
+              class="edit"
+              (keydown.enter)="updateTaskTitleInputText(i, $event)"
+              [value]="task.title"
+            />
           </li>
         }
         <!-- <li class="finished">

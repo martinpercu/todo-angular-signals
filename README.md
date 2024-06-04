@@ -42,6 +42,18 @@
 - In HTML input add (keydown.enter)="inputHandler()"  (WHITOUT the $event) Because the "event" is in the new FormControl
 - In TS inputHandler() modify it
 
+## Dynamic styles for tasks
+- In the li element we must to mark as a dynamic style "finished".
+- In HTML add ===> <li [class.finished]="task.finished">
+- Now Adding the "editing mode" .... using doubleclick to open the input to change task title.
+- In HTML inside the li component in the input element add ==> <input class="editing" [value]="task.title" />
+- Then in li component add a (dblclick)="updateTaskTitle(i)"
+- In TS add method updateTaskTitle(index: number). This is similar to the updateTask() but changing the editing. Also add that for all others task edinting pass to false. (this is to only have ONE task in edition mode)
+- In the HTML input (keydown.enter)="updateTaskTitleInputText(i, $event)"
+- In TS new method updateTaskTitleInputText(index: number, event: Event). this is similar to updateTask() 
+
+
+
 
 
 
