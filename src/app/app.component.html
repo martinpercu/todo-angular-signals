@@ -17,12 +17,12 @@
     <!-- This is the example to see how looks the tasks -->
     <!-- <pre>
       <code>
-        {{ tasks() | json }}
+        {{ tasksFiltered() | json }}
       </code>
     </pre> -->
     <section class="main">
       <ul class="todo-list">
-        @for (task of tasks(); track task; let i = $index) {
+        @for (task of tasksFiltered(); track task; let i = $index) {
           <li
             (dblclick)="updateTaskTitle(i)"
             [class.finished]="task.finished"
@@ -69,8 +69,8 @@
     <!-- This footer should be hidden by default and shown when there are todos -->
     <footer class="footer">
       <!-- Here is the counter of kind of tasks -->
-      <span class="todo-count"><strong>{{ tasks().length }}</strong>
-        @if (tasks().length > 1) {
+      <span class="todo-count"><strong>{{ tasksFiltered().length }}</strong>
+        @if (tasksFiltered().length > 1) {
         <span> tasks</span>
         } @else {
         <span> task</span>
@@ -79,13 +79,22 @@
       <!-- This will be for change the list -->
       <ul class="filters">
         <li>
-          <a routerLink="/" class="selected">All Tasks</a>
+          <a (click)="changeFilterTasks('allTasks')"
+          [class.selected]="filterTasks() === 'allTasks'">
+          All Tasks
+          </a>
         </li>
         <li>
-          <a routerLink="/pending">Pending</a>
+          <a (click)="changeFilterTasks('pending')"
+          [class.selected]="filterTasks() === 'pending'">
+            Pending
+          </a>
         </li>
         <li>
-          <a routerLink="/finished">Finished</a>
+          <a (click)="changeFilterTasks('finished')"
+          [class.selected]="filterTasks() === 'finished'">
+            Finished
+          </a>
         </li>
       </ul>
       <!-- Hidden ??  if no finished items are left ?? Think how to use it ↓ -->
