@@ -34,6 +34,7 @@ export class AppComponent {
   ]);
 
   filterTasks = signal<'allTasks' | 'finished' | 'pending'>('allTasks');
+
   tasksFiltered = computed(() => {
     const filter = this.filterTasks();
     const tasks = this.tasks();
@@ -44,7 +45,12 @@ export class AppComponent {
       return tasks.filter(task => task.finished);
     }
     return tasks;
-  })
+  });
+
+  tasksFinished = computed(() => {
+    return this.tasks().filter(task => task.finished);
+  });
+
 
 
   newTaskControl = new FormControl('', {
@@ -62,28 +68,28 @@ export class AppComponent {
   //     });
   //   };
 
-    // We will use the injector above to use the effect() in another method ==>trackTasks() called in the ngOnInit().
-    // IMPORTANT this is not "REALLY" needed. But could happend in contructor the effect will set tasks with an empty string (line 15 here). Then set them in local storage.
-    // So we will save an empty array in localStorage. Not the idea ;)
+  // We will use the injector above to use the effect() in another method ==>trackTasks() called in the ngOnInit().
+  // IMPORTANT this is not "REALLY" needed. But could happend in contructor the effect will set tasks with an empty string (line 15 here). Then set them in local storage.
+  // So we will save an empty array in localStorage. Not the idea ;)
 
-    injector = inject(Injector);
+  injector = inject(Injector);
 
-    ngOnInit() {
-      const storage = localStorage.getItem('tasks');
-      if (storage) {
-        const tasks = JSON.parse(storage);
-        this.tasks.set(tasks);
-      }
-      this.trackTasks();
+  ngOnInit() {
+    const storage = localStorage.getItem('tasks');
+    if (storage) {
+      const tasks = JSON.parse(storage);
+      this.tasks.set(tasks);
     }
+    this.trackTasks();
+  }
 
-    trackTasks() {
-      effect(() => {
-        const tasks = this.tasks();
-        console.log(tasks , "run each time task change");
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-      }, {injector: this.injector});
-    }
+  trackTasks() {
+    effect(() => {
+      const tasks = this.tasks();
+      console.log(tasks , "run each time task change");
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, {injector: this.injector});
+  }
 
 
 
@@ -161,8 +167,12 @@ export class AppComponent {
     this.filterTasks.set(filter);
   }
 
-
-
-
+  deleteAllFinished() {
+    if (this.tasksFinished().length > 0) {
+      if(confirm("Are you sure to delete all finished tasks?")) {
+      this.tasks.update((tasks) => tasks.filter(task => !task.finished));
+      }
+    }
+  }
 
 }

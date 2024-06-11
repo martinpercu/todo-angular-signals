@@ -5,7 +5,7 @@
       <p>All the my tasks HERE!!!</p>
       <input
         class="new-todo"
-        placeholder="Type the new task"
+        placeholder="Write here your new task"
         autofocus
         type="text"
         [formControl]="newTaskControl"
@@ -40,34 +40,11 @@
             />
           </li>
         }
-        <!-- <li class="finished">
-          <div class="view">
-            <input class="toggle" type="checkbox" checked />
-            <label>Do something fresh with Bobby</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Do something fresh with Bobby" />
-        </li>
-        <li>
-          <div class="view">
-            <input class="toggle" type="checkbox" />
-            <label>Render the 3D object in Blender</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Render the 3D object in Blender" />
-        </li>
-        <li class="editing">
-          <div class="view">
-            <input class="toggle" type="checkbox" />
-            <label>Eat ice cream with soda??</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Eat ice cream with soda??" />
-        </li> -->
       </ul>
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
-    <footer class="footer">
+    @if(tasks().length !== 0) {
+      <footer class="footer">
       <!-- Here is the counter of kind of tasks -->
       <span class="todo-count"><strong>{{ tasksFiltered().length }}</strong>
         @if (tasksFiltered().length > 1) {
@@ -98,7 +75,19 @@
         </li>
       </ul>
       <!-- Hidden ??  if no finished items are left ?? Think how to use it ↓ -->
-      <button class="clear-finished">Clear Finished</button>
+      <button class="clear-finished" (click)="deleteAllFinished()" [class.show-off]="tasksFinished().length == 0">Clear Finished</button>
     </footer>
+    <footer class="footer mobile">
+      <span class="todo-count mobile"><strong>{{ tasksFiltered().length }}</strong>
+        @if (tasksFiltered().length > 1) {
+        <span> tasks</span>
+        } @else {
+        <span> task</span>
+        } left
+      </span>
+      <button class="clear-finished mobile" (click)="deleteAllFinished()" [class.show-off]="tasksFinished().length == 0">Clear Finished</button>
+    </footer>
+    }
+
   </div>
 </section>

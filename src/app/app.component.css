@@ -8,6 +8,8 @@
 .header {
   background: var(--horizontal-gradient);
   padding-bottom: 5rem;
+  text-shadow: 1px 1px 6px rgb(42, 42, 42);
+  /* text-shadow: 1px 1px 2px rgb(255, 0, 212), 0 0 1em blue, 0 0 0.2em blue; */
 }
 
 .hidden {
@@ -44,16 +46,18 @@
 .header h1 {
   width: 100%;
   font-size: 3rem;
-  font-weight: 200;
+  font-weight: 300;
   color: white;
   padding-top: 2rem;
   margin: 0;
+  padding-left: 1rem;
 }
 
 .header h1 + p {
   margin: 0;
   color: white;
   padding-bottom: 1.2rem;
+  padding-left: 1rem;
 }
 
 .new-todo,
@@ -86,8 +90,6 @@
 .main {
   position: relative;
   z-index: 2;
-  border-top: 1px solid #e6e6e6;
-  border-top: 1px solid ivory;
 }
 
 .toggle-all {
@@ -331,6 +333,15 @@ html .clear-finished:active {
   text-decoration: underline;
 }
 
+.mobile {
+  display: none;
+}
+
+.show-off {
+  color: lightgray;
+  text-decoration: none !important;
+}
+
 /*
     Hack to remove background from Mobile Safari.
     Can't use it globally since it destroys checkboxes in Firefox
@@ -347,11 +358,55 @@ html .clear-finished:active {
 }
 
 @media (max-width: 430px) {
+
+
   .footer {
-    height: 50px;
+    /* height: 50px; */
   }
 
   .filters {
-    bottom: 10px;
+    /* bottom: 10px; */
   }
+
+  .todo-count {
+    display: none;
+    height: 1px;
+  }
+
+  .clear-finished {
+    display: none;
+    height: 1px;
+  }
+
+
+  .header h1 {
+    width: 90%;
+    font-size: 2.2rem;
+    font-weight: 400;
+    padding-top: 1.5rem;
+    padding-left: 5%;
+  }
+
+  .header h1 + p {
+    font-weight: 400;
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-right: 1rem;
+    text-align: right;
+  }
+
+  .todo-list li .destroy {
+    content: "×";
+    display: block;
+    height: 100%;
+    line-height: 1.1;
+    position: absolute;
+    height: 40px;
+  }
+
+
+  .mobile {
+    display: block;
+  }
+
 }
